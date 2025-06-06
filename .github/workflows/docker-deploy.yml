@@ -29,13 +29,19 @@ jobs:
         docker tag my-node-app:latest 890742580558.dkr.ecr.ap-southeast-1.amazonaws.com/my-node-app:latest
         docker push 890742580558.dkr.ecr.ap-southeast-1.amazonaws.com/my-node-app:latest
 
-    - name: Deploy to EC2 over SSH
+        - name: Deploy to EC2 over SSH
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set default.region ap-southeast-1
+
+          aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 890742580558.dkr.ecr.ap-southeast-1.amazonaws.com
+
           docker pull 890742580558.dkr.ecr.ap-southeast-1.amazonaws.com/my-node-app:latest
           docker stop app || true && docker rm app || true
           docker run -d -p 80:3000 --name app 890742580558.dkr.ecr.ap-southeast-1.amazonaws.com/my-node-app:latest
