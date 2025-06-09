@@ -90,6 +90,11 @@ docker run -p 3000:3000 aws-devops
 - Terraform installed
 - IAM credentials set up
 - ECR repo created in AWS
+- Create secrets for github actions
+    * EC2_HOST
+    * EC2_SSH_KEY
+    * AWS_ACCESS_KEY_ID
+    * AWS_SECRET_ACCESS_KEY
 
 ### Steps
 
