@@ -127,4 +127,4 @@ MIT
 ## 🙋‍♂️ Author
 
 Amal S. Pillai  
-[LinkedIn](inkedin.com/in/amal-s-pillai-36344a230/) • [GitHub](https://github.com/amalspillai02)
+[LinkedIn](https://linkedin.com/in/amal-s-pillai-36344a230) • [GitHub](https://github.com/amalspillai02)
